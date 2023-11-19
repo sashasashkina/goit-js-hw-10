@@ -8,4 +8,8 @@ export function fetchBreeds() {
   return axios.get(`${BASE_URL}/breeds`).then(resp => resp.data);
 }
 
-export function fetchCatByBreed(breedId) {}
+export function fetchCatByBreed(breedId) {
+  return axios
+    .get(`${BASE_URL}/images/search?breed_ids=${breedId}`)
+    .then(resp => resp.data[0]);
+}
