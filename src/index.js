@@ -45,10 +45,14 @@ fetchBreeds()
 
 function onChange(e) {
   refs.loader.style.display = 'block';
+  refs.divCatInfo.style.display = 'none';
 
   const id = e.target.value;
   fetchCatByBreed(id)
-    .then(({ breeds, url }) => console.log(breeds[0], url))
+    .then(({ breeds, url }) => {
+      createMarkup(breeds[0], url);
+      refs.divCatInfo.style.display = 'flex';
+    })
     .catch(() => {
       Notify.failure('Oops!');
       refs.error.style.display = 'block';
